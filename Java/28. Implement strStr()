@@ -1,0 +1,29 @@
+public class Solution {
+    public int strStr(String haystack, String needle) {
+        if (needle.length() == 0) return 0;
+        
+        int pos = 0;
+        CHECK: for (int i = pos; ; i++) {
+                    if (i > (haystack.length() - needle.length())) {
+                        pos = -1;
+                        break;
+                    }
+                    for (int j = 0; j < needle.length(); j++) {
+                        if (haystack.charAt(i+j) != needle.charAt(j)) {
+                            pos++;
+                            break;
+                        } 
+                        if (j == needle.length() - 1) {
+                            break CHECK;
+                        }
+                    }
+                }
+        return pos;
+    }
+    
+    /*
+    public int strStr(String haystack, String needle) {
+        return haystack.indexOf(needle);
+    }
+    */
+}

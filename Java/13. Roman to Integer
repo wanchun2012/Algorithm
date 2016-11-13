@@ -1,0 +1,21 @@
+public class Solution {
+    public int romanToInt(String s) {
+        Map<Character, Integer> roman_dict = new HashMap<Character, Integer>() {{
+            put('I',1);put('V',5);put('X',10);put('L',50);put('C',100);put('D',500);put('M',1000);
+        }};
+
+        Map<Character, Integer> roman_ixc = new HashMap<Character, Integer>() {{
+            put('I',5);put('X',50);put('C',500);put('D',5000);put('M',50000);
+        }};
+        
+        int value = 0;
+        for (int i = s.length() - 1; i >= 0; i--) {
+            if (roman_ixc.containsKey(s.charAt(i)) && value >= roman_ixc.get(s.charAt(i))) {
+               value -= roman_dict.get(s.charAt(i));
+            } else {
+               value += roman_dict.get(s.charAt(i));
+            }
+        }
+        return value;
+    }
+}
